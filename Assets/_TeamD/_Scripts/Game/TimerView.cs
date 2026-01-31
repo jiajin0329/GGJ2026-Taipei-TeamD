@@ -18,7 +18,6 @@ namespace WhoIsCatchingNaps
         private LevelSettings _levelSettings;
         private Color _startColor;
 
-
         public void Initialize(LevelSettings _levelSettings)
         {
             this._levelSettings = _levelSettings;
