@@ -246,6 +246,8 @@ MonoBehaviour:
   abnormalSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   hitImage: {fileID: 7447820566409418316}
   invincibilityDuration: 0.5
+  timer: {fileID: 0}
+  reduceTimeOnHit: 1
   onStateChanged:
     m_PersistentCalls:
       m_Calls: []

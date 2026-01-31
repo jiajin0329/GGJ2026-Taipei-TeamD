@@ -24,6 +24,7 @@ namespace WhoIsCatchingNaps
             this._levelSettings = _levelSettings;
             _startColor = _timerText.color;
             _reduceTimeText.SetActive(false);
+            SetTimerText((int)_levelSettings.levelTime);
         }
 
         public void SetTimerText(int _timer)
@@ -51,6 +52,9 @@ namespace WhoIsCatchingNaps
         {
             var _clone = UnityEngine.Object.Instantiate(_reduceTimeText, _reduceTimeText.transform.parent);
             var _cloneTransform = _clone.transform;
+            var _cloneText = _clone.GetComponentInChildren<TextMeshProUGUI>();
+            if (_cloneText != null)
+                _cloneText.text = $"-{_levelSettings.reduceTime:F0}";
             _cloneTransform.DOLocalMoveY(_cloneTransform.localPosition.y + _levelSettings.reduceTimeTextMoveY, 1f).OnComplete(() => UnityEngine.Object.Destroy(_clone));
             _clone.gameObject.SetActive(true);
         }

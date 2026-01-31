@@ -24,6 +24,23 @@ namespace WhoIsCatchingNaps
             _endUI.Hide();
         }
 
+        private void Start()
+        {
+            GameEvents.OnSlotClicked += OnSlotClicked;
+        }
+
+        private void OnDestroy()
+        {
+            GameEvents.OnSlotClicked -= OnSlotClicked;
+        }
+
+        /// <summary>只有點擊到正常狀態（點錯）才扣時間。</summary>
+        private void OnSlotClicked(int slotIndex, bool isAbnormal)
+        {
+            if (!isAbnormal)
+                _timer.Reduce();
+        }
+
         private void Update()
         {
             LevelHandle();

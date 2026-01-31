@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,35 +6,32 @@ namespace WhoIsCatchingNaps
 {
     public class Timer : MonoBehaviour
     {
-        [SerializeField]
-        private TimerView _view;
+        [SerializeField] private TimerView _view;
+        [SerializeField] private InputActionAsset _inputActionAsset;
 
-        [SerializeField]
-        public float _timer;
-
-        [SerializeField]
-        private InputActionAsset _inputActionAsset;
-
-        [SerializeField]
-        private bool _test;
+        [SerializeField] public float _timer;
 
         private LevelSettings _levelSettings;
         private InputAction _inputAction;
 
+        /// <summary>按下 Attack 時觸發；扣時間僅在點擊到正常狀態時由 LevelManager 處理。</summary>
+        public event Action OnAttackInput;
+
         public void Initialize(LevelSettings _levelSettings)
         {
             _timer = _levelSettings.levelTime;
-
             this._levelSettings = _levelSettings;
+            _view.Initialize(_levelSettings);
 
-            if (_test)
+            if (_inputActionAsset != null)
             {
                 _inputAction = _inputActionAsset.FindAction("Attack");
-                _inputAction.Enable();
-                _inputAction.started += ReduceTime;
+                if (_inputAction != null)
+                {
+                    _inputAction.Enable();
+                    _inputAction.started += OnAttackInputStarted;
+                }
             }
-
-            _view.Initialize(_levelSettings);
         }
 
         public void Tick()
@@ -42,7 +40,7 @@ namespace WhoIsCatchingNaps
             _view.SetTimerText((int)Mathf.Ceil(_timer));
         }
 
-        private void ReduceTime(InputAction.CallbackContext _callbackContext) => Reduce();
+        private void OnAttackInputStarted(InputAction.CallbackContext _) => OnAttackInput?.Invoke();
 
         public float Get() => _timer;
 
@@ -54,8 +52,8 @@ namespace WhoIsCatchingNaps
 
         private void OnDestroy()
         {
-            if (_test)
-                _inputAction.started -= ReduceTime;
+            if (_inputAction != null)
+                _inputAction.started -= OnAttackInputStarted;
         }
     }
 }
