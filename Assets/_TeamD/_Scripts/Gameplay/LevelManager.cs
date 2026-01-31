@@ -45,10 +45,9 @@ namespace WhoIsCatchingNaps
             }
         }
 
-        /// <summary>角色被點擊時：轉發計分、點錯才扣時間。</summary>
-        private void OnCharacterClicked(CharacterBehaviour character)
+        /// <summary>角色被點擊時：轉發計分、點錯才扣時間。isAbnormal 由 Character 在點擊當下傳入，避免動畫或時序造成誤判。</summary>
+        private void OnCharacterClicked(CharacterBehaviour character, bool isAbnormal)
         {
-            bool isAbnormal = character.CurrentState == CharacterState.Abnormal;
             _scoreController.NotifySlotClicked(character.SlotIndex, isAbnormal);
             if (!isAbnormal)
                 _timer.Reduce();

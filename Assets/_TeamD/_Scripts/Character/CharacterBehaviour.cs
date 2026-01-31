@@ -10,17 +10,17 @@ namespace Character
     [RequireComponent(typeof(RectTransform))]
     public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
 {
-    private const string HitImageChildName = "HitImage";
+    private const string AnimStateNormalIdle = "Normal-Idle";
+    private const string AnimStateAbnormalSnooze = "Abnormal-Snooze";
+    private const string AnimStateSmash = "Smash";
 
     [Header("狀態切換")]
     [SerializeField] private float switchInterval = 2f;
     [SerializeField] private bool randomState = true;
 
-    [Header("狀態圖示")]
-    [SerializeField] private Sprite normalSprite;
-    [SerializeField] private Sprite abnormalSprite;
-    [SerializeField]
-    private GameObject hitImage;
+    [Header("動畫")]
+    [SerializeField] private Animator animator;
+    [SerializeField] private Animator smashAnimator;
 
     [Header("受擊過渡")]
     [SerializeField] private float invincibilityDuration = 0.5f;
@@ -36,12 +36,16 @@ namespace Character
 
     public CharacterState CurrentState => _currentState;
     public int SlotIndex => _slotIndex;
-    public event Action<CharacterBehaviour> Clicked;
+    /// <summary>參數：角色、是否為異常狀態（點擊當下即鎖定，避免動畫或時序影響）。</summary>
+    public event Action<CharacterBehaviour, bool> Clicked;
 
     private void Awake()
     {
         EnsureImageAndGraphic();
-        EnsureHitImageResolved();
+        if (animator == null)
+            animator = GetComponent<Animator>() ?? GetComponentInChildren<Animator>();
+        if (smashAnimator != null)
+            smashAnimator.gameObject.SetActive(false);
         EnsureSlotIndex();
     }
 
@@ -72,7 +76,8 @@ namespace Character
         if (_currentState == CharacterState.Hit)
             return;
 
-        Clicked?.Invoke(this);
+        bool isAbnormal = _currentState == CharacterState.Abnormal;
+        Clicked?.Invoke(this, isAbnormal);
 
         _currentState = CharacterState.Hit;
         _invincibilityTimer = invincibilityDuration;
@@ -89,17 +94,6 @@ namespace Character
         transparent.color = new Color(1f, 1f, 1f, 0f);
         transparent.raycastTarget = true;
         if (_image == null) _image = transparent;
-    }
-
-    private void EnsureHitImageResolved()
-    {
-        if (hitImage == null)
-        {
-            var t = transform.Find(HitImageChildName);
-            if (t != null) hitImage = t.gameObject;
-        }
-        if (hitImage != null)
-            hitImage.SetActive(false);
     }
 
     private void EnsureSlotIndex()
@@ -139,14 +133,25 @@ namespace Character
 
     private void ApplyStateVisual()
     {
-        if (hitImage != null)
-            hitImage.SetActive(_currentState == CharacterState.Hit);
+        const int layer = 0;
+        if (_currentState == CharacterState.Hit)
+        {
+            if (smashAnimator != null)
+            {
+                smashAnimator.gameObject.SetActive(true);
+                smashAnimator.Play(AnimStateSmash, layer, 0f);
+            }
+            return;
+        }
 
-        if (_image == null || _currentState == CharacterState.Hit) return;
-        if (_currentState == CharacterState.Normal && normalSprite != null)
-            _image.sprite = normalSprite;
-        else if (_currentState == CharacterState.Abnormal && abnormalSprite != null)
-            _image.sprite = abnormalSprite;
+        if (smashAnimator != null)
+            smashAnimator.gameObject.SetActive(false);
+
+        if (animator == null) return;
+        if (_currentState == CharacterState.Normal)
+            animator.Play(AnimStateNormalIdle, layer, 0f);
+        else if (_currentState == CharacterState.Abnormal)
+            animator.Play(AnimStateAbnormalSnooze, layer, 0f);
     }
 }
 }
