@@ -424,28 +424,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cat001_16
-      rect:
-        serializedVersion: 2
-        x: 1434
-        y: 1140
-        width: 719
-        height: 634
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c146aa614aaacfcf0800000000000000
-      internalID: -217111060289002468
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: cat001_20
       rect:
         serializedVersion: 2
@@ -512,28 +490,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cat001_24
-      rect:
-        serializedVersion: 2
-        x: 1456
-        y: 303
-        width: 712
-        height: 529
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 04c4b88f8bc1cc900800000000000000
-      internalID: 705970822359764032
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: cat001_25
       rect:
         serializedVersion: 2
@@ -551,6 +507,50 @@ TextureImporter:
       bones: []
       spriteID: 351828db95802acd0800000000000000
       internalID: -2548465257613721261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat001_9
+      rect:
+        serializedVersion: 2
+        x: 1452
+        y: 300
+        width: 710
+        height: 723
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3300e4ab77ad6934b9ba027e49f37ce4
+      internalID: 8524823478848624326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cat001_10
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 1148
+        width: 710
+        height: 723
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8f4eab9641f9364eae3134fea45ec57
+      internalID: -3543668729370506007
       vertices: []
       indices: 
       edges: []
