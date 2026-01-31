@@ -1,6 +1,9 @@
-public enum CharacterState
+namespace Character
 {
-    Normal,
-    Abnormal,
-    Hit
+    public enum CharacterState
+    {
+        Normal,
+        Abnormal,
+        Hit
+    }
 }

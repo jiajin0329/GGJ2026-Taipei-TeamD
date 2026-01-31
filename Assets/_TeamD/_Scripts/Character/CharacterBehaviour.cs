@@ -4,9 +4,11 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>掛在 Window/Character 上：狀態切換、點擊發送事件、受擊無敵。</summary>
-[RequireComponent(typeof(RectTransform))]
-public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
+namespace Character
+{
+    /// <summary>掛在 Window/Character 上：狀態切換、點擊發送事件、受擊無敵。由 LevelManager 訂閱 Clicked 轉發計分與計時。</summary>
+    [RequireComponent(typeof(RectTransform))]
+    public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
 {
     private const string HitImageChildName = "HitImage";
 
@@ -70,7 +72,6 @@ public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
         if (_currentState == CharacterState.Hit)
             return;
 
-        GameEvents.RaiseSlotClicked(_slotIndex, _currentState == CharacterState.Abnormal);
         Clicked?.Invoke(this);
 
         _currentState = CharacterState.Hit;
@@ -147,4 +148,5 @@ public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
         else if (_currentState == CharacterState.Abnormal && abnormalSprite != null)
             _image.sprite = abnormalSprite;
     }
+}
 }

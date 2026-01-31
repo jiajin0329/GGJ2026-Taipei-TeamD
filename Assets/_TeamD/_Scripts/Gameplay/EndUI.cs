@@ -7,11 +7,7 @@ namespace WhoIsCatchingNaps
 {
     public class EndUI : MonoBehaviour
     {
-        [SerializeField]
-        private ScoreController _scoreController;
-
-        [SerializeField]
-        private GameObject _ui;
+        [SerializeField] private GameObject _ui;
 
         [SerializeField]
         private TextMeshProUGUI _scoreText;
@@ -35,11 +31,12 @@ namespace WhoIsCatchingNaps
 
         private void ReturnToTitle() => SceneManager.LoadScene(0);
 
-        public void Show()
+        /// <summary>由 LevelManager 傳入分數與 Combo 顯示。</summary>
+        public void Show(int score, int combo)
         {
             _ui.SetActive(true);
-            _scoreText.text = $"Score : {_scoreController.Score}";
-            _comboText.text = $"Combo : {_scoreController.Combo}";
+            _scoreText.text = $"Score : {score}";
+            _comboText.text = $"Combo : {combo}";
         }
 
         public void Hide() => _ui.SetActive(false);
