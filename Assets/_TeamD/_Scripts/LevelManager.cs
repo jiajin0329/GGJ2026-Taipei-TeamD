@@ -9,9 +9,6 @@ namespace WhoIsCatchingNaps
         private LevelSettings _levelSettings;
 
         [SerializeField]
-        private TimerView _view;
-
-        [SerializeField]
         private Timer _timer;
 
         [SerializeField]
@@ -49,8 +46,6 @@ namespace WhoIsCatchingNaps
 
                 Debug.Log("Level End");
             }
-
-            _view.SetTimerText((int)Mathf.Ceil(_timer.Get()));
         }
     }
 }
