@@ -9,20 +9,21 @@ namespace WhoIsCatchingNaps
         private LevelSettings _levelSettings;
 
         [SerializeField]
-        private LevelManagerView _view;
+        private TimerView _view;
+
+        [SerializeField]
+        private Timer _timer;
 
         [SerializeField]
         private EndUI _endUI;
-        
-        [SerializeField]
-        private float _timer;
+
         private bool _isEnd;
 
         public Action endEvent;
 
         private void Awake()
         {
-            _timer = _levelSettings.levelTime;
+            _timer.Initialize(_levelSettings);
             _endUI.Hide();
         }
 
@@ -36,12 +37,11 @@ namespace WhoIsCatchingNaps
             if (_isEnd)
                 return;
 
-            _timer -= Time.deltaTime;
+            _timer.Tick();
             
 
-            if (_timer <= 0f)
+            if (_timer.Get() <= 0f)
             {
-                _timer = 0f;
                 endEvent?.Invoke();
 
                 _endUI.Show();
@@ -50,7 +50,7 @@ namespace WhoIsCatchingNaps
                 Debug.Log("Level End");
             }
 
-            _view.SetTimerText((int)Mathf.Ceil(_timer));
+            _view.SetTimerText((int)Mathf.Ceil(_timer.Get()));
         }
     }
 }
