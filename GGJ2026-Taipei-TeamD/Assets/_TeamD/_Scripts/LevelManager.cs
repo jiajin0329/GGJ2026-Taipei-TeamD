@@ -1,0 +1,56 @@
+using System;
+using UnityEngine;
+
+namespace WhoIsCatchingNaps
+{
+    public class LevelManager : MonoBehaviour
+    {
+        [SerializeField]
+        private LevelSettings _levelSettings;
+
+        [SerializeField]
+        private LevelManagerView _view;
+
+        [SerializeField]
+        private EndUI _endUI;
+        
+        [SerializeField]
+        private float _timer;
+        private bool _isEnd;
+
+        public Action endEvent;
+
+        private void Awake()
+        {
+            _timer = _levelSettings.levelTime;
+            _endUI.Hide();
+        }
+
+        private void Update()
+        {
+            LevelHandle();
+        }
+
+        private void LevelHandle()
+        {
+            if (_isEnd)
+                return;
+
+            _timer -= Time.deltaTime;
+            
+
+            if (_timer <= 0f)
+            {
+                _timer = 0f;
+                endEvent?.Invoke();
+
+                _endUI.Show();
+                _isEnd = true;
+
+                Debug.Log("Level End");
+            }
+
+            _view.SetTimerText((int)Mathf.Ceil(_timer));
+        }
+    }
+}
