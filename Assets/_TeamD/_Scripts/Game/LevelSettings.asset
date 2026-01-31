@@ -17,3 +17,4 @@ MonoBehaviour:
   <reduceTimeColor>k__BackingField: {r: 1, g: 0, b: 0, a: 1}
   <reduceTimeShakeStrength>k__BackingField: 50
   <reduceTimeShakeVibrato>k__BackingField: 100
+  <reduceTimeTextMoveY>k__BackingField: 50
