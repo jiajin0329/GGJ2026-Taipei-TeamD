@@ -850,6 +850,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385084159}
   m_CullTransparentMesh: 1
+--- !u!114 &386683957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9172861672524887412, guid: 320013e5709897d499628704d91470c6, type: 3}
+  m_PrefabInstance: {fileID: 482005715}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &482005715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1002,6 +1013,10 @@ PrefabInstance:
       propertyPath: _ui
       value: 
       objectReference: {fileID: 482005720}
+    - target: {fileID: 2642727772912281012, guid: fa1c54d33c965414e8644087cb44be25, type: 3}
+      propertyPath: _comboText
+      value: 
+      objectReference: {fileID: 386683957}
     - target: {fileID: 2642727772912281012, guid: fa1c54d33c965414e8644087cb44be25, type: 3}
       propertyPath: _scoreText
       value: 

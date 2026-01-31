@@ -42,14 +42,14 @@ namespace WhoIsCatchingNaps
             _view.SetTimerText((int)Mathf.Ceil(_timer));
         }
 
-        private void ReduceTime(InputAction.CallbackContext _callbackContext) => Reduce(_levelSettings.reduceTime);
+        private void ReduceTime(InputAction.CallbackContext _callbackContext) => Reduce();
 
         public float Get() => _timer;
 
-        public void Reduce(float _reduce)
+        public void Reduce()
         {
-            _timer -= _reduce;
-            _view.Reduce(_reduce).Forget();
+            _timer -= _levelSettings.reduceTime;
+            _view.Reduce(_levelSettings.reduceTime).Forget();
         }
 
         private void OnDestroy()

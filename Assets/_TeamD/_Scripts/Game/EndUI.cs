@@ -17,6 +17,9 @@ namespace WhoIsCatchingNaps
         private TextMeshProUGUI _scoreText;
 
         [SerializeField]
+        private TextMeshProUGUI _comboText;
+
+        [SerializeField]
         private Button _restartButton;
 
         [SerializeField]
@@ -35,7 +38,8 @@ namespace WhoIsCatchingNaps
         public void Show()
         {
             _ui.SetActive(true);
-            _scoreText.text = _scoreController.Score.ToString();
+            _scoreText.text = $"Score : {_scoreController.Score}";
+            _comboText.text = $"Combo : {_scoreController.Combo}";
         }
 
         public void Hide() => _ui.SetActive(false);
