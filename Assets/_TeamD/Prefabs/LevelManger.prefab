@@ -47,7 +47,6 @@ MonoBehaviour:
   _view:
     _scoreTexts:
     - {fileID: 0}
-    - {fileID: 0}
 --- !u!1 &4938021417606148284
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +143,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WhoIsCatchingNaps.Timer
   _view:
     _timerText: {fileID: 0}
+    _reduceTimeText: {fileID: 0}
   _timer: 0
+  _inputActionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &7682183582943957962
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7f01606d5f5ff41a7e850ac15c5b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WhoIsCatchingNaps.EndUI
+  _scoreController: {fileID: 0}
   _ui: {fileID: 0}
+  _scoreText: {fileID: 0}
   _restartButton: {fileID: 0}
   _exitButton: {fileID: 0}
