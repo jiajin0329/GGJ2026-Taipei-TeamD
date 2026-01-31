@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -7,21 +8,23 @@ using UnityEngine.UI;
 [RequireComponent(typeof(RectTransform))]
 public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
 {
+    private const string HitImageChildName = "HitImage";
+
     [Header("狀態切換")]
     [SerializeField] private float switchInterval = 2f;
-    [SerializeField] [Tooltip("勾選：隨機；不勾：輪流")]
-    private bool randomState = true;
+    [SerializeField] private bool randomState = true;
 
-    [Header("狀態圖示（選填）")]
+    [Header("狀態圖示")]
     [SerializeField] private Sprite normalSprite;
     [SerializeField] private Sprite abnormalSprite;
-    [SerializeField] private Sprite hitSprite;
+    [SerializeField]
+    private GameObject hitImage;
 
     [Header("受擊過渡")]
     [SerializeField] private float invincibilityDuration = 0.5f;
 
     [Header("選填：狀態改變時綁定")]
-    [SerializeField] private UnityEngine.Events.UnityEvent onStateChanged;
+    [SerializeField] private UnityEvent onStateChanged;
 
     private Image _image;
     private CharacterState _currentState;
@@ -36,18 +39,15 @@ public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         EnsureImageAndGraphic();
-        if (_slotIndex < 0)
-            _slotIndex = transform.parent != null ? transform.parent.GetSiblingIndex() : transform.GetSiblingIndex();
+        EnsureHitImageResolved();
+        EnsureSlotIndex();
     }
 
     private void Start()
     {
-        _currentState = randomState
-            ? (UnityEngine.Random.value > 0.5f ? CharacterState.Normal : CharacterState.Abnormal)
-            : CharacterState.Normal;
+        _currentState = GetInitialState();
         _timer = 0f;
-        ApplyStateVisual();
-        onStateChanged?.Invoke();
+        NotifyStateChange();
     }
 
     private void Update()
@@ -56,23 +56,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
         {
             _invincibilityTimer -= Time.deltaTime;
             if (_invincibilityTimer <= 0f)
-            {
-                _currentState = PickNextState();
-                _timer = 0f;
-                ApplyStateVisual();
-                onStateChanged?.Invoke();
-            }
+                TransitionToNextState();
             return;
         }
 
         _timer += Time.deltaTime;
         if (_timer >= switchInterval)
-        {
-            _timer = 0f;
-            _currentState = PickNextState();
-            ApplyStateVisual();
-            onStateChanged?.Invoke();
-        }
+            TransitionToNextState();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -80,14 +70,12 @@ public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
         if (_currentState == CharacterState.Hit)
             return;
 
-        bool isAbnormal = _currentState == CharacterState.Abnormal;
-        GameEvents.RaiseSlotClicked(_slotIndex, isAbnormal);
+        GameEvents.RaiseSlotClicked(_slotIndex, _currentState == CharacterState.Abnormal);
         Clicked?.Invoke(this);
 
         _currentState = CharacterState.Hit;
         _invincibilityTimer = invincibilityDuration;
-        ApplyStateVisual();
-        onStateChanged?.Invoke();
+        NotifyStateChange();
     }
 
     public void SetSlotIndex(int index) => _slotIndex = index;
@@ -102,6 +90,45 @@ public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
         if (_image == null) _image = transparent;
     }
 
+    private void EnsureHitImageResolved()
+    {
+        if (hitImage == null)
+        {
+            var t = transform.Find(HitImageChildName);
+            if (t != null) hitImage = t.gameObject;
+        }
+        if (hitImage != null)
+            hitImage.SetActive(false);
+    }
+
+    private void EnsureSlotIndex()
+    {
+        if (_slotIndex >= 0) return;
+        _slotIndex = transform.parent != null
+            ? transform.parent.GetSiblingIndex()
+            : transform.GetSiblingIndex();
+    }
+
+    private CharacterState GetInitialState()
+    {
+        if (randomState)
+            return UnityEngine.Random.value > 0.5f ? CharacterState.Normal : CharacterState.Abnormal;
+        return CharacterState.Normal;
+    }
+
+    private void TransitionToNextState()
+    {
+        _currentState = PickNextState();
+        _timer = 0f;
+        NotifyStateChange();
+    }
+
+    private void NotifyStateChange()
+    {
+        ApplyStateVisual();
+        onStateChanged?.Invoke();
+    }
+
     private CharacterState PickNextState()
     {
         if (randomState)
@@ -111,12 +138,13 @@ public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
 
     private void ApplyStateVisual()
     {
-        if (_image == null) return;
+        if (hitImage != null)
+            hitImage.SetActive(_currentState == CharacterState.Hit);
+
+        if (_image == null || _currentState == CharacterState.Hit) return;
         if (_currentState == CharacterState.Normal && normalSprite != null)
             _image.sprite = normalSprite;
         else if (_currentState == CharacterState.Abnormal && abnormalSprite != null)
             _image.sprite = abnormalSprite;
-        else if (_currentState == CharacterState.Hit && hitSprite != null)
-            _image.sprite = hitSprite;
     }
 }
