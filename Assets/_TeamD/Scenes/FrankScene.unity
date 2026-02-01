@@ -151,7 +151,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1338520414}
-  - {fileID: 122329890}
   - {fileID: 32849463}
   m_Father: {fileID: 2036204432}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -654,7 +653,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 15392643}
+  m_Father: {fileID: 1338520414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2140,7 +2139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1338520414}
   m_Layer: 5
-  m_Name: ComboImageArea
+  m_Name: ComboArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2160,6 +2159,7 @@ RectTransform:
   m_Children:
   - {fileID: 671490772}
   - {fileID: 16706712}
+  - {fileID: 122329890}
   m_Father: {fileID: 15392643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
