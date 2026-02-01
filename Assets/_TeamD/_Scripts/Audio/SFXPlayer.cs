@@ -31,7 +31,6 @@ namespace WhoIsCatchingNaps
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
             instance = this;
 
             foreach(var audioClipSetting in _levelSettings.audioClipSettings)
