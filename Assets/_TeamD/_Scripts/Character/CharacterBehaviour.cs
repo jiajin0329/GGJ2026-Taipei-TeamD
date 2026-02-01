@@ -18,6 +18,8 @@ namespace Character
     [SerializeField] private float switchInterval = 2f;
     [SerializeField] private bool randomState = true;
 
+    private float _currentSwitchInterval;
+
     [Header("動畫")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator smashAnimator;
@@ -51,10 +53,17 @@ namespace Character
 
     private void Start()
     {
+        _currentSwitchInterval = switchInterval;
         _currentState = GetInitialState();
         _timer = 0f;
         NotifyStateChange();
     }
+
+    /// <summary>供技能等暫時縮短狀態切換間隔。結束後呼叫 ResetSwitchInterval 還原。</summary>
+    public void SetSwitchInterval(float value) => _currentSwitchInterval = value;
+
+    /// <summary>還原為預設的狀態切換間隔。</summary>
+    public void ResetSwitchInterval() => _currentSwitchInterval = switchInterval;
 
     private void Update()
     {
@@ -67,7 +76,7 @@ namespace Character
         }
 
         _timer += Time.deltaTime;
-        if (_timer >= switchInterval)
+        if (_timer >= _currentSwitchInterval)
             TransitionToNextState();
     }
 

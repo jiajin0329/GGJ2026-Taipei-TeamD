@@ -13,6 +13,9 @@ namespace WhoIsCatchingNaps
         [SerializeField] private CharacterBehaviour[] _characters;
 
         private bool _isEnd;
+
+        /// <summary>供技能等取得所有角色。</summary>
+        public CharacterBehaviour[] GetCharacters() => _characters;
         public Action endEvent;
 
         private void Awake()
