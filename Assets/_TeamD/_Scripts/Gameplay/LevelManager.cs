@@ -32,6 +32,8 @@ namespace WhoIsCatchingNaps
             _endUI.Hide();
             _scoreView?.Initialize(_levelSettings);
             _comboView?.Initialize(_levelSettings);
+
+            SFXPlayer.instance.PlayOneShot(AudioName.classBell);
         }
 
         private void Start()
