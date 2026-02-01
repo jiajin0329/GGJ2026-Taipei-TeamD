@@ -13,7 +13,7 @@ namespace WhoIsCatchingNaps
         private TextMeshProUGUI _timerText;
 
         [SerializeField]
-        private GameObject _reduceTimeText;
+        private TextMeshProUGUI _reduceTimeText;
 
         private LevelSettings _levelSettings;
         private Color _startColor;
@@ -22,7 +22,7 @@ namespace WhoIsCatchingNaps
         {
             this._levelSettings = _levelSettings;
             _startColor = _timerText.color;
-            _reduceTimeText.SetActive(false);
+            _reduceTimeText.gameObject.SetActive(false);
             SetTimerText((int)_levelSettings.levelTime);
         }
 
@@ -36,7 +36,7 @@ namespace WhoIsCatchingNaps
 
         public async UniTaskVoid Play()
         {
-            ReduceTimeTextEffect();
+            VFX.TextEffect(_reduceTimeText, $"-{_levelSettings.reduceTime:F0}", _levelSettings.reduceTimeTextMoveY);
 
             _timerText.DOColor(_levelSettings.reduceTimeColor, 0.25f);
             
@@ -45,17 +45,6 @@ namespace WhoIsCatchingNaps
             await UniTask.Delay((int)(_shakeDuration*1000f));
 
             _timerText.DOColor(_startColor, 0.25f);
-        }
-
-        private void ReduceTimeTextEffect()
-        {
-            var _clone = UnityEngine.Object.Instantiate(_reduceTimeText, _reduceTimeText.transform.parent);
-            var _cloneTransform = _clone.transform;
-            var _cloneText = _clone.GetComponentInChildren<TextMeshProUGUI>();
-            if (_cloneText != null)
-                _cloneText.text = $"-{_levelSettings.reduceTime:F0}";
-            _cloneTransform.DOLocalMoveY(_cloneTransform.localPosition.y + _levelSettings.reduceTimeTextMoveY, 1f).OnComplete(() => UnityEngine.Object.Destroy(_clone));
-            _clone.gameObject.SetActive(true);
         }
     }
 }

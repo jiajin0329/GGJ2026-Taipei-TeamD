@@ -24,15 +24,23 @@ namespace WhoIsCatchingNaps
         [field: SerializeField]
         public float reduceTimeTextMoveY { get; private set; } = 50f;
 
+        [field: Header("doPunch")]
+        [field: SerializeField]
+        public float doPunchScaleInDuration { get; private set; } = 0.05f;
+
+        [field: SerializeField]
+        public float doPunchScaleOutDuration { get; private set; } = 0.4f;
+
         [field: Header("Combo")]
         [field: SerializeField]
-        public float comboDOPunchScale { get; private set; } = 1.1f;
+        public float comboDOPunchScale { get; private set; } = 1.4f;
+
+        [field: Header("AddScore")]
+        [field: SerializeField]
+        public float addScoreDOPunchScale { get; private set; } = 1.1f;
 
         [field: SerializeField]
-        public float comboDOPunchScaleInDuration { get; private set; } = 0.1f;
-
-        [field: SerializeField]
-        public float comboDOPunchScaleOutDuration { get; private set; } = 0.2f;
+        public Color addScoreColor { get; private set; }
 
         [field: Header("Audio")]
         [field: SerializeField]
