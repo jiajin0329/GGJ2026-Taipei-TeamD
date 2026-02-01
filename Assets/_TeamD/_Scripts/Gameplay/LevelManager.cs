@@ -66,7 +66,7 @@ namespace WhoIsCatchingNaps
         {
             if (_isRollCallActive)
             {
-                bool isCorrect = character.IsHandsUp;
+                bool isCorrect = !character.IsHandsUp;
                 _scoreController.NotifySlotClicked(character.SlotIndex, isCorrect);
                 if (!isCorrect)
                     _timer.Reduce();
