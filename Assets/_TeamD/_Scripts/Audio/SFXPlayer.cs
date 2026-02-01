@@ -72,6 +72,6 @@ namespace WhoIsCatchingNaps
             }
         }
 
-        private void TestClickSFX(InputAction.CallbackContext _callbackContext) => PlayOneShot(AudioName.click);
+        private void TestClickSFX(InputAction.CallbackContext _callbackContext) => PlayOneShot(AudioName.handDown);
     }
 }

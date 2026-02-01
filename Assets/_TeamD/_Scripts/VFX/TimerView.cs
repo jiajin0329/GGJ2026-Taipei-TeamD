@@ -36,7 +36,7 @@ namespace WhoIsCatchingNaps
 
         public async UniTaskVoid Play()
         {
-            VFX.TextEffect(_reduceTimeText, $"-{_levelSettings.reduceTime:F0}", _levelSettings.reduceTimeTextMoveY);
+            VFX.TextEffect(_reduceTimeText, $"-{_levelSettings.reduceTime:F0}", _levelSettings.reduceTimeTextMoveY).Forget();
 
             _timerText.DOColor(_levelSettings.reduceTimeColor, 0.25f);
             

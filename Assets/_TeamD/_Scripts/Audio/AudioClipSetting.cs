@@ -18,11 +18,13 @@ namespace WhoIsCatchingNaps
 
     public enum AudioName : byte
     {
-        click,
-        correct,
-        wrong,
-        timeIsAlmostUp,
-        win,
-        lose
+        handDown, //打擊音效
+        skill_rollCall, //技能觸發 - 點名
+        skill_math, //技能觸發 - 數學
+        skill_catGrass, //技能觸發 - 貓草
+        wrong, //懲罰
+        nap, //打嗑睡
+        chuckle, //小聲笑聲
+        gameEnd //上課鐘音效
     }
 }

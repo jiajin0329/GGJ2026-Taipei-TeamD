@@ -30,7 +30,7 @@ namespace WhoIsCatchingNaps
         public async UniTaskVoid Play()
         {
             //改文字找 "+1"
-            VFX.TextEffect(_addScoreText, "+1", _levelSettings.reduceTimeTextMoveY);
+            VFX.TextEffect(_addScoreText, "+1", _levelSettings.reduceTimeTextMoveY).Forget();
 
             _scoreText.DOColor(_levelSettings.addScoreColor, 0.25f);
             
