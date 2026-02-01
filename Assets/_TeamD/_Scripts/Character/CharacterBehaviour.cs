@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 namespace Character
 {
-    /// <summary>掛在 Window/Character 上：狀態切換、點擊發送事件、受擊無敵。由 LevelManager 訂閱 Clicked 轉發計分與計時。</summary>
+    /// <summary>掛在 Window/Character 上：狀態切換、點擊發送事件、受擊無敵。底下可放多隻貓，狀態切換時隨機換成另一隻。由 LevelManager 訂閱 Clicked 轉發計分與計時。</summary>
     [RequireComponent(typeof(RectTransform))]
     public class CharacterBehaviour : MonoBehaviour, IPointerClickHandler
-{
-    private const string AnimStateNormalIdle = "Normal-Idle";
-    private const string AnimStateAbnormalSnooze = "Abnormal-Snooze";
+    {
     private const string AnimStateSmash = "Smash";
     private const string AnimStateHandsUp = "HandsUp";
 
@@ -25,12 +23,21 @@ namespace Character
     [SerializeField] private Animator animator;
     [SerializeField] private Animator smashAnimator;
 
+    [Header("動畫狀態名稱（隨機選一）")]
+    [Tooltip("正常狀態")]
+    [SerializeField] private string[] normalAnimStateNames = { "Normal-Idle", "Normal-ChinRest" };
+    [Tooltip("異常狀態")]
+    [SerializeField] private string[] abnormalAnimStateNames = { "Abnormal-EyesMaskConfuse", "Abnormal-Snooze", "Abnormal-EyesMaskLookUp" };
+
     [Header("受擊過渡")]
     [SerializeField] private float invincibilityDuration = 0.5f;
 
-    [Header("選填：狀態改變時綁定")]
+    [Header("選填：狀態改變時")]
     [SerializeField] private UnityEvent onStateChanged;
 
+    [Header("多貓模式（數量>1 時狀態切換換貓）")]
+    [SerializeField] private Transform[] _catTransforms;
+    private int _currentCatIndex;
     private Image _image;
     private CharacterState _currentState;
     private float _timer;
@@ -49,6 +56,18 @@ namespace Character
     private void Awake()
     {
         EnsureImageAndGraphic();
+        if (_catTransforms != null && _catTransforms.Length >= 1)
+        {
+            for (int i = 0; i < _catTransforms.Length; i++)
+                if (_catTransforms[i] != null)
+                    _catTransforms[i].gameObject.SetActive(false);
+            _currentCatIndex = _catTransforms.Length > 1
+                ? UnityEngine.Random.Range(0, _catTransforms.Length)
+                : 0;
+            if (_catTransforms[_currentCatIndex] != null)
+                _catTransforms[_currentCatIndex].gameObject.SetActive(true);
+            RefreshAnimatorsFromActiveCat();
+        }
         if (animator == null)
             animator = GetComponent<Animator>() ?? GetComponentInChildren<Animator>();
         if (smashAnimator != null)
@@ -62,6 +81,35 @@ namespace Character
         _currentState = GetInitialState();
         _timer = 0f;
         NotifyStateChange();
+    }
+
+    private void RefreshAnimatorsFromActiveCat()
+    {
+        if (_catTransforms == null || _catTransforms.Length == 0 || _currentCatIndex < 0 || _currentCatIndex >= _catTransforms.Length)
+            return;
+        Transform activeCat = _catTransforms[_currentCatIndex];
+        if (activeCat == null)
+            return;
+        Animator[] animators = activeCat.GetComponentsInChildren<Animator>(true);
+        animator = animators.Length > 0 ? animators[0] : null;
+        if (smashAnimator != null)
+            smashAnimator.gameObject.SetActive(false);
+    }
+
+    private void SwitchToRandomCat()
+    {
+        if (_catTransforms == null || _catTransforms.Length <= 1)
+            return;
+        int count = _catTransforms.Length;
+        int nextIndex = UnityEngine.Random.Range(0, count);
+        while (nextIndex == _currentCatIndex && count > 1)
+            nextIndex = UnityEngine.Random.Range(0, count);
+        if (_catTransforms[_currentCatIndex] != null)
+            _catTransforms[_currentCatIndex].gameObject.SetActive(false);
+        _currentCatIndex = nextIndex;
+        if (_catTransforms[_currentCatIndex] != null)
+            _catTransforms[_currentCatIndex].gameObject.SetActive(true);
+        RefreshAnimatorsFromActiveCat();
     }
 
     /// <summary>供技能等暫時縮短狀態切換間隔。結束後呼叫 ResetSwitchInterval 還原。</summary>
@@ -97,7 +145,7 @@ namespace Character
             {
                 _isHandsUp = false;
                 if (animator != null)
-                    animator.CrossFade(AnimStateNormalIdle, 0.25f, 0, 0f);
+                    animator.CrossFade(GetRandomNormalState(), 0.25f, 0, 0f);
             }
             return;
         }
@@ -151,6 +199,7 @@ namespace Character
     {
         _currentState = PickNextState();
         _timer = 0f;
+        SwitchToRandomCat();
         NotifyStateChange();
     }
 
@@ -190,9 +239,23 @@ namespace Character
             return;
         }
         if (_currentState == CharacterState.Normal)
-            animator.Play(AnimStateNormalIdle, layer, 0f);
+            animator.Play(GetRandomNormalState(), layer, 0f);
         else if (_currentState == CharacterState.Abnormal)
-            animator.Play(AnimStateAbnormalSnooze, layer, 0f);
+            animator.Play(GetRandomAbnormalState(), layer, 0f);
+    }
+
+    private string GetRandomNormalState()
+    {
+        if (normalAnimStateNames != null && normalAnimStateNames.Length > 0)
+            return normalAnimStateNames[UnityEngine.Random.Range(0, normalAnimStateNames.Length)];
+        return "Normal-Idle";
+    }
+
+    private string GetRandomAbnormalState()
+    {
+        if (abnormalAnimStateNames != null && abnormalAnimStateNames.Length > 0)
+            return abnormalAnimStateNames[UnityEngine.Random.Range(0, abnormalAnimStateNames.Length)];
+        return "Abnormal-Snooze";
     }
 }
 }

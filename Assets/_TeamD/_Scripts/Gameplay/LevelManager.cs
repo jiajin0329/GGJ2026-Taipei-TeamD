@@ -28,12 +28,13 @@ namespace WhoIsCatchingNaps
 
         private void Awake()
         {
-            _timer.Initialize(_levelSettings);
-            _endUI.Hide();
+            if (_timer != null)
+                _timer.Initialize(_levelSettings);
+            _endUI?.Hide();
             _scoreView?.Initialize(_levelSettings);
             _comboView?.Initialize(_levelSettings);
-
-            SFXPlayer.instance.PlayOneShot(AudioName.classBell);
+            if (SFXPlayer.instance != null)
+                SFXPlayer.instance.PlayOneShot(AudioName.classBell);
         }
 
         private void Start()
