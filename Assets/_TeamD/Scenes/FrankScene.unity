@@ -1318,7 +1318,7 @@ PrefabInstance:
     - target: {fileID: 3909809189082726728, guid: fa1c54d33c965414e8644087cb44be25, type: 3}
       propertyPath: _view._reduceTimeText
       value: 
-      objectReference: {fileID: 1511473624}
+      objectReference: {fileID: 1511473626}
     - target: {fileID: 4938021417606148284, guid: fa1c54d33c965414e8644087cb44be25, type: 3}
       propertyPath: m_Name
       value: LevelManger
@@ -3741,8 +3741,8 @@ PrefabInstance:
       value: 28901.225
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6811960889344343365, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
-    - {fileID: 570293986477408790, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

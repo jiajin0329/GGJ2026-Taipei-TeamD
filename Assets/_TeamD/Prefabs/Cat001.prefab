@@ -271,7 +271,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4889602011876093332}
   - component: {fileID: 7991343516844990016}
-  - component: {fileID: 4161866572301213531}
   m_Layer: 5
   m_Name: Cat001
   m_TagString: Untagged
@@ -321,27 +320,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4161866572301213531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3187272660615027512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f8a11d6fedf9140909663559b6885a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterBehaviour
-  switchInterval: 2
-  randomState: 1
-  normalSprite: {fileID: 0}
-  abnormalSprite: {fileID: 0}
-  hitImage: {fileID: 0}
-  invincibilityDuration: 0.5
-  onStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3865744002062820366
 GameObject:
   m_ObjectHideFlags: 0
