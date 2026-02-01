@@ -8,6 +8,8 @@ namespace WhoIsCatchingNaps
     [Serializable]
     public class SFXPlayer : MonoBehaviour
     {
+        public static SFXPlayer instance { get; private set; }
+
         [SerializeField]
         private LevelSettings _levelSettings;
 
@@ -29,6 +31,9 @@ namespace WhoIsCatchingNaps
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+
             foreach(var audioClipSetting in _levelSettings.audioClipSettings)
             {
                 _dictionaryAudioClipSetting.Add(audioClipSetting.name.ToString(), audioClipSetting);
@@ -51,6 +56,8 @@ namespace WhoIsCatchingNaps
 
         private void OnDestroy()
         {
+            instance = null;
+
             if (_test)
                 _inputAction.started -= TestClickSFX;
         }
