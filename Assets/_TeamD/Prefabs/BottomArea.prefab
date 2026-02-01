@@ -185,9 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WhoIsCatchingNaps.SkillShortenSwitchView
   levelManager: {fileID: 0}
   cooldownImage: {fileID: 1557730732375230586}
-  cooldownDuration: 15
+  cooldownDuration: 20
   effectDuration: 5
-  shortenedInterval: 0.5
+  shortenedInterval: 1.5
 --- !u!1 &223538009444682799
 GameObject:
   m_ObjectHideFlags: 0
