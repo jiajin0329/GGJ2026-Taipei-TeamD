@@ -34,7 +34,7 @@ namespace WhoIsCatchingNaps
             _timerText.text = $"{_min}:{_sec.ToString("D2")}" ;
         }
 
-        public async UniTaskVoid Reduce(float _reduce)
+        public async UniTaskVoid Play()
         {
             ReduceTimeTextEffect();
 

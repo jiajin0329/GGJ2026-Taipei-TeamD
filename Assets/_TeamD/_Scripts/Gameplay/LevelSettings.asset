@@ -18,6 +18,9 @@ MonoBehaviour:
   <reduceTimeShakeStrength>k__BackingField: 50
   <reduceTimeShakeVibrato>k__BackingField: 100
   <reduceTimeTextMoveY>k__BackingField: 50
+  <comboDOPunchScale>k__BackingField: 1.4
+  <comboDOPunchScaleInDuration>k__BackingField: 0.05
+  <comboDOPunchScaleOutDuration>k__BackingField: 0.4
   <audioClipSettings>k__BackingField:
   - <name>k__BackingField: 0
     <audioClip>k__BackingField: {fileID: 8300000, guid: 62490361bbce6d149924717a6a2250d1, type: 3}
