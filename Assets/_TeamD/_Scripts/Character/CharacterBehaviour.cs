@@ -22,10 +22,12 @@ namespace Character
     [Header("動畫")]
     [SerializeField] private Animator animator;
     [SerializeField] private Animator smashAnimator;
+    [Tooltip("狀態切換時動畫過渡時間（秒）")]
+    [SerializeField] private float animationTransitionDuration = 0.25f;
 
     [Header("動畫狀態名稱（隨機選一）")]
     [Tooltip("正常狀態")]
-    [SerializeField] private string[] normalAnimStateNames = { "Normal-Idle", "Normal-ChinRest" };
+    [SerializeField] private string[] normalAnimStateNames = { "Normal-Idle", "Normal-ChinRest","Normal-ReadingLeft","Normal-ReadingRight" };
     [Tooltip("異常狀態")]
     [SerializeField] private string[] abnormalAnimStateNames = { "Abnormal-EyesMaskConfuse", "Abnormal-Snooze", "Abnormal-EyesMaskLookUp" };
 
@@ -125,7 +127,7 @@ namespace Character
         _isHandsUp = true;
         _handsUpTimer = duration;
         if (animator != null)
-            animator.CrossFade(AnimStateHandsUp, 0.25f, 0, 0f);
+            animator.CrossFade(AnimStateHandsUp, animationTransitionDuration, 0, 0f);
     }
 
     private void Update()
@@ -145,7 +147,7 @@ namespace Character
             {
                 _isHandsUp = false;
                 if (animator != null)
-                    animator.CrossFade(GetRandomNormalState(), 0.25f, 0, 0f);
+                    animator.CrossFade(GetRandomNormalState(), animationTransitionDuration, 0, 0f);
             }
             return;
         }
@@ -199,7 +201,6 @@ namespace Character
     {
         _currentState = PickNextState();
         _timer = 0f;
-        SwitchToRandomCat();
         NotifyStateChange();
     }
 
@@ -235,13 +236,13 @@ namespace Character
         if (animator == null) return;
         if (_isHandsUp && _handsUpTimer > 0f)
         {
-            animator.Play(AnimStateHandsUp, layer, 1f);
+            animator.CrossFade(AnimStateHandsUp, animationTransitionDuration, layer, 0f);
             return;
         }
         if (_currentState == CharacterState.Normal)
-            animator.Play(GetRandomNormalState(), layer, 0f);
+            animator.CrossFade(GetRandomNormalState(), animationTransitionDuration, layer, 0f);
         else if (_currentState == CharacterState.Abnormal)
-            animator.Play(GetRandomAbnormalState(), layer, 0f);
+            animator.CrossFade(GetRandomAbnormalState(), animationTransitionDuration, layer, 0f);
     }
 
     private string GetRandomNormalState()

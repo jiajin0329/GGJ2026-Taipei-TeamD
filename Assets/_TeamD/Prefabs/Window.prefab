@@ -177,6 +177,15 @@ MonoBehaviour:
   randomState: 1
   animator: {fileID: 3605809329367030079}
   smashAnimator: {fileID: 8331654344906775421}
+  normalAnimStateNames:
+  - Normal-Idle
+  - Normal-ChinRest
+  - Normal-ReadingLeft
+  - Normal-ReadingRight
+  abnormalAnimStateNames:
+  - Abnormal-EyesMaskConfuse
+  - Abnormal-Snooze
+  - Abnormal-EyesMaskLookUp
   invincibilityDuration: 0.5
   onStateChanged:
     m_PersistentCalls:
