@@ -25,6 +25,7 @@ namespace WhoIsCatchingNaps
         {
             _restartButton.onClick.AddListener(Restart);
             _exitButton.onClick.AddListener(ReturnToTitle);
+            _ui.SetActive(false);
         }
 
         private void Restart() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
