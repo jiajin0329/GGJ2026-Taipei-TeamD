@@ -906,6 +906,10 @@ PrefabInstance:
       propertyPath: levelManager
       value: 
       objectReference: {fileID: 1416999782}
+    - target: {fileID: 9132744364114397455, guid: dba76002ee60d0a40a74657d6df7b647, type: 3}
+      propertyPath: _particleSystem
+      value: 
+      objectReference: {fileID: 1330209883}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1295,6 +1299,64 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa1c54d33c965414e8644087cb44be25, type: 3}
+--- !u!1001 &518094858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1759379196442024046, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_Name
+      value: Cat Paw Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7936688435206772891, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 35034993501998773, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56315c10d7c7b8046afb009397e66098, type: 3}
 --- !u!114 &522100276 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2340222123199268723, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
@@ -2391,10 +2453,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Raise Hand Buttom Particle
       objectReference: {fileID: 0}
-    - target: {fileID: 7215620040714727055, guid: 5fd5932e873c6a742bb1e69d943c01d6, type: 3}
-      propertyPath: looping
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8090900816921934025, guid: 5fd5932e873c6a742bb1e69d943c01d6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.106
@@ -2717,6 +2775,11 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7460965403144691762, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
   m_PrefabInstance: {fileID: 1291925483}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1330209883 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7215620040714727055, guid: 5fd5932e873c6a742bb1e69d943c01d6, type: 3}
+  m_PrefabInstance: {fileID: 1158389169}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1352931841
 PrefabInstance:
@@ -3912,6 +3975,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 353.6846
       objectReference: {fileID: 0}
+    - target: {fileID: 4099368136346816952, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308186866274631661, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4804692800183839133, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4126,6 +4197,7 @@ SceneRoots:
   - {fileID: 658350065}
   - {fileID: 746852006}
   - {fileID: 1158389169}
+  - {fileID: 518094858}
   - {fileID: 1097561166}
   - {fileID: 1598108808}
   - {fileID: 119619593}

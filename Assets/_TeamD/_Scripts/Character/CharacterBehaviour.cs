@@ -38,6 +38,10 @@ namespace Character
 
     [Header("多貓模式（數量>1 時狀態切換換貓）")]
     [SerializeField] private Transform[] _catTransforms;
+
+    [SerializeField]
+    private ParticleSystem _particleSystem;
+
     private int _currentCatIndex;
     private Image _image;
     private CharacterState _currentState;
@@ -225,6 +229,8 @@ namespace Character
             {
                 smashAnimator.gameObject.SetActive(true);
                 smashAnimator.Play(AnimStateSmash, layer, 0f);
+
+                _particleSystem.Play();
             }
             SFXPlayer.instance?.PlayOneShot(AudioName.handDown);
             return;
