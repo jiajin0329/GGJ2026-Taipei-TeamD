@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class ClickParticle : MonoBehaviour
 {
-    // 拉 Camera 進去，如果忘記拉的話就抓主camera
+    // 拉 Camera 
     [SerializeField] private Camera _targetCamera;
-    // 主camera的z = -10，這裡為了要做座標轉換，要把z調整回0
+    // 主camera的z = -10
     [SerializeField] private float _depth = 10f;
     [SerializeField] private ParticleSystem _clickParticle;
     [SerializeField]
@@ -60,13 +60,20 @@ public class ClickParticle : MonoBehaviour
         
         transform.position = gamePosition;
         
-        _clickParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        if(_clickParticle != null)
+        {
+            _clickParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
-        _clickParticle.transform.position = gamePosition;
-        _clickParticle.Play();
+            _clickParticle.transform.position = gamePosition;
+            _clickParticle.Play();
+        }
+        
     }
 
-
+    void OnDestroy()
+    {
+        _inputAction.started -= ScreenPositionToGame;
+    }
 }
 
 
