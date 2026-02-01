@@ -31,12 +31,12 @@ namespace WhoIsCatchingNaps
 
         private void ReturnToTitle() => SceneManager.LoadScene(0);
 
-        /// <summary>由 LevelManager 傳入分數與 Combo 顯示。</summary>
-        public void Show(int score, int combo)
+        /// <summary>由 LevelManager 傳入分數與最大 Combo 顯示。</summary>
+        public void Show(int score, int maxCombo)
         {
             _ui.SetActive(true);
             _scoreText.text = $"Score : {score}";
-            _comboText.text = $"Combo : {combo}";
+            _comboText.text = $"Combo : {maxCombo}";
             SFXPlayer.instance.PlayOneShot(AudioName.gameEnd);
         }
 

@@ -15,9 +15,11 @@ namespace WhoIsCatchingNaps
 
         private int _score;
         private int _combo;
+        private int _maxCombo;
 
         public int Score => _score;
         public int Combo => _combo;
+        public int MaxCombo => _maxCombo;
         public event Action<int> ScoreChanged;
         public event Action<int> ComboChanged;
 
@@ -25,6 +27,7 @@ namespace WhoIsCatchingNaps
         {
             _score = 0;
             _combo = 0;
+            _maxCombo = 0;
             NotifyUI();
         }
 
@@ -35,6 +38,8 @@ namespace WhoIsCatchingNaps
             {
                 _score += pointsPerCorrectClick;
                 _combo++;
+                if (_combo > _maxCombo)
+                    _maxCombo = _combo;
                 onScoreChanged?.Invoke(_score);
                 ScoreChanged?.Invoke(_score);
             }

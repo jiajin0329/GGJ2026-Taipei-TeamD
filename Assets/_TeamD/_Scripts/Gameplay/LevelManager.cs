@@ -95,7 +95,7 @@ namespace WhoIsCatchingNaps
             if (_timer.Get() <= 0f)
             {
                 endEvent?.Invoke();
-                _endUI.Show(_scoreController.Score, _scoreController.Combo);
+                _endUI.Show(_scoreController.Score, _scoreController.MaxCombo);
                 _isEnd = true;
                 Debug.Log("Level End");
             }
