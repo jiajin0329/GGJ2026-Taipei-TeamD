@@ -22,5 +22,8 @@ namespace WhoIsCatchingNaps
 
         [field: SerializeField]
         public float reduceTimeTextMoveY { get; private set; } = 50f;
+
+        [field: SerializeField]
+        public AudioClipSetting[] audioClipSettings { get; private set; }
     }
 }
