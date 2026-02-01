@@ -173,11 +173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f8a11d6fedf9140909663559b6885a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterBehaviour
-  switchInterval: 2
+  switchInterval: 3
   randomState: 1
   animator: {fileID: 3605809329367030079}
   smashAnimator: {fileID: 8331654344906775421}
-  animationTransitionDuration: 0.25
   normalAnimStateNames:
   - Normal-Idle
   - Normal-ChinRest
