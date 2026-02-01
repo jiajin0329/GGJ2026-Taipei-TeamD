@@ -13,10 +13,14 @@ namespace WhoIsCatchingNaps
         [SerializeField] private CharacterBehaviour[] _characters;
 
         private bool _isEnd;
+        private bool _isRollCallActive;
 
         /// <summary>供技能等取得所有角色。</summary>
         public CharacterBehaviour[] GetCharacters() => _characters;
         public Action endEvent;
+
+        /// <summary>點名技能用：設為 true 時，點到沒舉手的貓才扣時間。</summary>
+        public void SetRollCallActive(bool active) => _isRollCallActive = active;
 
         private void Awake()
         {
@@ -48,9 +52,17 @@ namespace WhoIsCatchingNaps
             }
         }
 
-        /// <summary>角色被點擊時：轉發計分、點錯才扣時間。isAbnormal 由 Character 在點擊當下傳入，避免動畫或時序造成誤判。</summary>
+        /// <summary>角色被點擊時：轉發計分、點錯才扣時間。點名期間以 IsHandsUp 判定。</summary>
         private void OnCharacterClicked(CharacterBehaviour character, bool isAbnormal)
         {
+            if (_isRollCallActive)
+            {
+                bool isCorrect = character.IsHandsUp;
+                _scoreController.NotifySlotClicked(character.SlotIndex, isCorrect);
+                if (!isCorrect)
+                    _timer.Reduce();
+                return;
+            }
             _scoreController.NotifySlotClicked(character.SlotIndex, isAbnormal);
             if (!isAbnormal)
                 _timer.Reduce();

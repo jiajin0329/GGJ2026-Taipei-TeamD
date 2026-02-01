@@ -13,6 +13,7 @@ namespace Character
     private const string AnimStateNormalIdle = "Normal-Idle";
     private const string AnimStateAbnormalSnooze = "Abnormal-Snooze";
     private const string AnimStateSmash = "Smash";
+    private const string AnimStateHandsUp = "HandsUp";
 
     [Header("狀態切換")]
     [SerializeField] private float switchInterval = 2f;
@@ -34,9 +35,13 @@ namespace Character
     private CharacterState _currentState;
     private float _timer;
     private float _invincibilityTimer;
+    private float _handsUpTimer;
+    private bool _isHandsUp;
     private int _slotIndex = -1;
 
     public CharacterState CurrentState => _currentState;
+    /// <summary>點名技能期間是否正在舉手（供 LevelManager 判定點錯）。</summary>
+    public bool IsHandsUp => _isHandsUp;
     public int SlotIndex => _slotIndex;
     /// <summary>參數：角色、是否為異常狀態（點擊當下即鎖定，避免動畫或時序影響）。</summary>
     public event Action<CharacterBehaviour, bool> Clicked;
@@ -65,6 +70,16 @@ namespace Character
     /// <summary>還原為預設的狀態切換間隔。</summary>
     public void ResetSwitchInterval() => _currentSwitchInterval = switchInterval;
 
+    /// <summary>點名技能用：僅對 Normal 貓呼叫，以 CrossFade 進入 HandsUp，duration 秒後再 CrossFade 回 Normal-Idle。</summary>
+    public void PlayHandsUpForDuration(float duration)
+    {
+        if (_currentState != CharacterState.Normal) return;
+        _isHandsUp = true;
+        _handsUpTimer = duration;
+        if (animator != null)
+            animator.CrossFade(AnimStateHandsUp, 0.25f, 0, 0f);
+    }
+
     private void Update()
     {
         if (_currentState == CharacterState.Hit)
@@ -72,6 +87,18 @@ namespace Character
             _invincibilityTimer -= Time.deltaTime;
             if (_invincibilityTimer <= 0f)
                 TransitionToNextState();
+            return;
+        }
+
+        if (_handsUpTimer > 0f)
+        {
+            _handsUpTimer -= Time.deltaTime;
+            if (_handsUpTimer <= 0f)
+            {
+                _isHandsUp = false;
+                if (animator != null)
+                    animator.CrossFade(AnimStateNormalIdle, 0.25f, 0, 0f);
+            }
             return;
         }
 
@@ -157,6 +184,11 @@ namespace Character
             smashAnimator.gameObject.SetActive(false);
 
         if (animator == null) return;
+        if (_isHandsUp && _handsUpTimer > 0f)
+        {
+            animator.Play(AnimStateHandsUp, layer, 1f);
+            return;
+        }
         if (_currentState == CharacterState.Normal)
             animator.Play(AnimStateNormalIdle, layer, 0f);
         else if (_currentState == CharacterState.Abnormal)
