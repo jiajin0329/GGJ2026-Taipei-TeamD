@@ -101,7 +101,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663210416574832701}
-  m_LocalRotation: {x: -0, y: 0, z: -0.08824793, w: 0.9960986}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_ConstrainProportionsScale: 1
@@ -110,7 +110,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.236134, y: 519.7071}
+  m_AnchoredPosition: {x: -29.2, y: 530.2}
   m_SizeDelta: {x: 697.00006, y: 312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2541014386162339458
@@ -161,16 +161,16 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: -38.30005, y: 524.3299, z: 0}
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationAtRest: {x: 0, y: 524.3299, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: -9.133934}
   m_TranslationOffsets:
-  - {x: 0, y: 66.17499, z: 0}
-  - {x: 0, y: 66.17499, z: 0}
-  - {x: 0, y: 66.17499, z: 0}
+  - {x: 0.08156538, y: 0.5647775, z: 0}
+  - {x: -0.0091228485, y: 0.57056415, z: 0}
+  - {x: 0.08156538, y: 0.5647775, z: 0}
   m_RotationOffsets:
+  - {x: 0, y: 0, z: -9.133936}
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: -9.133936}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -271,7 +271,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4889602011876093332}
   - component: {fileID: 7991343516844990016}
-  - component: {fileID: 4161866572301213531}
   m_Layer: 5
   m_Name: Cat001
   m_TagString: Untagged
@@ -288,7 +287,7 @@ RectTransform:
   m_GameObject: {fileID: 3187272660615027512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.24999999, y: 0.24999999, z: 0.24999999}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8116297848208963113}
@@ -296,7 +295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &7991343516844990016
@@ -321,27 +320,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4161866572301213531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3187272660615027512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f8a11d6fedf9140909663559b6885a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterBehaviour
-  switchInterval: 2
-  randomState: 1
-  normalSprite: {fileID: 0}
-  abnormalSprite: {fileID: 0}
-  hitImage: {fileID: 0}
-  invincibilityDuration: 0.5
-  onStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3865744002062820366
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30.066845, y: 361.86328}
+  m_AnchoredPosition: {x: -38.3, y: 353.6845}
   m_SizeDelta: {x: 195, y: 184}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2368652652432442743
@@ -503,15 +481,15 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: -38.30005, y: 353.3199, z: 0}
+  m_TranslationAtRest: {x: -38.3, y: 361.8632, z: 0}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: 2.0582886, y: 25.55832, z: 0}
-  - {x: 1.1242676, y: 25.616364, z: 0}
-  - {x: 2.0582886, y: 25.55832, z: 0}
+  - {x: 0, y: 0.21771884, z: 0}
+  - {x: 0, y: 0.21771884, z: 0}
+  - {x: 0, y: 0.21771884, z: 0}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 2.091155}
+  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
@@ -646,7 +624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -38.3, y: 524.82996}
+  m_AnchoredPosition: {x: -38.3, y: 503.61395}
   m_SizeDelta: {x: 460, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6208867593064352577
@@ -697,12 +675,12 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: -38.30005, y: 524.8299, z: 0}
+  m_TranslationAtRest: {x: -38.3, y: 524.83, z: 0}
   m_RotationAtRest: {x: 0, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: 0, y: 66.29999, z: 0}
-  - {x: 0, y: 66.29999, z: 0}
-  - {x: 0, y: 66.29999, z: 0}
+  - {x: 0, y: 0.56477785, z: 0}
+  - {x: 0, y: 0.56477785, z: 0}
+  - {x: 0, y: 0.56477785, z: 0}
   m_RotationOffsets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
