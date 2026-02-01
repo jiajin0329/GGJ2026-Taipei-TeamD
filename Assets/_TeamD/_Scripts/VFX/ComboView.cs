@@ -9,7 +9,7 @@ namespace WhoIsCatchingNaps
     {
         [SerializeField]
         private Transform _comboUI;
-        
+
         private LevelSettings _levelSettings;
 
         public void Initialize(LevelSettings _levelSettings)
@@ -22,9 +22,8 @@ namespace WhoIsCatchingNaps
             float _scale = _levelSettings.comboDOPunchScale;
 
             var _sequence = DOTween.Sequence();
-
-            _sequence.Append(_comboUI.DOScale(new Vector3(_scale, _scale, 0f), _levelSettings.comboDOPunchScaleInDuration));
-            _sequence.Append(_comboUI.DOScale(Vector3.one, _levelSettings.comboDOPunchScaleOutDuration));
+            _sequence.Append(_comboUI.DOScale(new Vector3(_scale, _scale, 0f), _levelSettings.doPunchScaleInDuration));
+            _sequence.Append(_comboUI.DOScale(Vector3.one, _levelSettings.doPunchScaleOutDuration));
         }
     }
 }

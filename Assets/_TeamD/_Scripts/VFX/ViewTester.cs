@@ -22,10 +22,14 @@ namespace WhoIsCatchingNaps
         [SerializeField]
         private ComboView _comboView;
 
+        [SerializeField]
+        private ScoreView _scoreView;
+
         private void Awake()
         {
             _timerView.Initialize(_levelSettings);
             _comboView.Initialize(_levelSettings);
+            _scoreView.Initialize(_levelSettings);
 
             _inputAction = _inputActionAsset.FindAction("Attack");
             _inputAction.Enable();
@@ -36,6 +40,7 @@ namespace WhoIsCatchingNaps
         {
             _timerView.Play().Forget();
             _comboView.Play();
+            _scoreView.Play().Forget();
         }
 
         private void OnDestroy()
