@@ -1,6 +1,7 @@
 using System;
-using UnityEngine;
 using Character;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace WhoIsCatchingNaps
 {
@@ -11,6 +12,9 @@ namespace WhoIsCatchingNaps
         [SerializeField] private ScoreController _scoreController;
         [SerializeField] private EndUI _endUI;
         [SerializeField] private CharacterBehaviour[] _characters;
+        [Header("點擊 abnormal 時的效果")]
+        [SerializeField] private ScoreView _scoreView;
+        [SerializeField] private ComboView _comboView;
 
         private bool _isEnd;
         private bool _isRollCallActive;
@@ -26,6 +30,8 @@ namespace WhoIsCatchingNaps
         {
             _timer.Initialize(_levelSettings);
             _endUI.Hide();
+            _scoreView?.Initialize(_levelSettings);
+            _comboView?.Initialize(_levelSettings);
         }
 
         private void Start()
@@ -64,7 +70,12 @@ namespace WhoIsCatchingNaps
                 return;
             }
             _scoreController.NotifySlotClicked(character.SlotIndex, isAbnormal);
-            if (!isAbnormal)
+            if (isAbnormal)
+            {
+                _scoreView?.Play().Forget();
+                _comboView?.Play();
+            }
+            else
                 _timer.Reduce();
         }
 
