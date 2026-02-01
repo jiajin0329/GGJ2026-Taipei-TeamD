@@ -3971,10 +3971,6 @@ PrefabInstance:
       propertyPath: timer
       value: 
       objectReference: {fileID: 1640895526}
-    - target: {fileID: 2340222123199268723, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
-      propertyPath: _particleSystem
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2627871653520521707, guid: 82a0f399f4a578d44910b465c608a9c8, type: 3}
       propertyPath: m_IsActive
       value: 0
