@@ -17,6 +17,8 @@ namespace WhoIsCatchingNaps
         [SerializeField] private float cooldownDuration = 10f;
         [SerializeField] private float effectDuration = 3f;
 
+        [SerializeField]
+        private ParticleSystem _particleSystem;
         private float _cooldownRemaining;
         private float _effectRemaining;
 
@@ -57,6 +59,8 @@ namespace WhoIsCatchingNaps
             _cooldownRemaining = cooldownDuration;
             if (cooldownImage != null)
                 cooldownImage.fillAmount = 0f;
+
+            _particleSystem?.Play();
 
             SFXPlayer.instance?.PlayOneShot(AudioName.skill_rollCall);
         }

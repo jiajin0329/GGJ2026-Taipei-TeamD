@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Character;
 using WhoIsCatchingNaps;
+using Cysharp.Threading.Tasks;
 
 namespace WhoIsCatchingNaps
 {
@@ -18,6 +19,9 @@ namespace WhoIsCatchingNaps
         [SerializeField] private float effectDuration = 5f;
         [SerializeField] [Tooltip("效果期間的狀態切換間隔（秒）")]
         private float shortenedInterval = 0.5f;
+
+        [SerializeField]
+        private ParticleSystem _particleSystem;
 
         private float _cooldownRemaining;
         private float _effectRemaining;
@@ -58,7 +62,16 @@ namespace WhoIsCatchingNaps
             if (cooldownImage != null)
                 cooldownImage.fillAmount = 0f;
 
+            PlayFX().Forget();
+
             SFXPlayer.instance?.PlayOneShot(AudioName.skill_math);
+        }
+
+        private async UniTaskVoid PlayFX()
+        {
+            _particleSystem.Play();
+            await UniTask.Delay(3000);
+            _particleSystem.Stop();
         }
 
         private void Update()
