@@ -39,7 +39,12 @@ namespace WhoIsCatchingNaps
 
         public void PlayOneShot(AudioName _name)
         {
-            AudioClipSetting _audioClipSetting = _dictionaryAudioClipSetting[_name.ToString()];
+            var _key = _name.ToString();
+            
+            if (!_dictionaryAudioClipSetting.ContainsKey(_key))
+                return;
+
+            AudioClipSetting _audioClipSetting = _dictionaryAudioClipSetting[_key];
 
             _audioSource.PlayOneShot(_audioClipSetting.audioClip, _audioClipSetting.volume);
         }
