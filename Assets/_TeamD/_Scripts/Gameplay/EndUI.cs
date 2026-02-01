@@ -37,7 +37,7 @@ namespace WhoIsCatchingNaps
             _ui.SetActive(true);
             _scoreText.text = $"Score : {score}";
             _comboText.text = $"Combo : {maxCombo}";
-            SFXPlayer.instance.PlayOneShot(AudioName.gameEnd);
+            SFXPlayer.instance.PlayOneShot(AudioName.classBell);
         }
 
         public void Hide() => _ui.SetActive(false);

@@ -25,6 +25,6 @@ namespace WhoIsCatchingNaps
         wrong, //懲罰
         nap, //打嗑睡
         chuckle, //小聲笑聲
-        gameEnd //上課鐘音效
+        classBell //上課鐘音效
     }
 }
