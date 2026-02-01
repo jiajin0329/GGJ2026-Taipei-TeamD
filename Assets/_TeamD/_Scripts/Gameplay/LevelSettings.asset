@@ -26,13 +26,13 @@ MonoBehaviour:
   <audioClipSettings>k__BackingField:
   - <name>k__BackingField: 0
     <audioClip>k__BackingField: {fileID: 8300000, guid: d5a77c23330103646881f8fd5370be91, type: 3}
-    <volume>k__BackingField: 0.06
+    <volume>k__BackingField: 1
   - <name>k__BackingField: 1
     <audioClip>k__BackingField: {fileID: 8300000, guid: 13e13bde8c5a6914ca31a4e8387e582f, type: 3}
-    <volume>k__BackingField: 0.06
+    <volume>k__BackingField: 1
   - <name>k__BackingField: 2
     <audioClip>k__BackingField: {fileID: 8300000, guid: fa6241a9a0998994f86bab8648709b65, type: 3}
-    <volume>k__BackingField: 0.06
+    <volume>k__BackingField: 1
   - <name>k__BackingField: 3
     <audioClip>k__BackingField: {fileID: 8300000, guid: e54fc098b38978d4db37bb450a4e352c, type: 3}
     <volume>k__BackingField: 0.06

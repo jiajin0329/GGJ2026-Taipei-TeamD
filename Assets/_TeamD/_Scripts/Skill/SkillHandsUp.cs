@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Character;
+using WhoIsCatchingNaps;
 
 namespace WhoIsCatchingNaps
 {
@@ -56,6 +57,8 @@ namespace WhoIsCatchingNaps
             _cooldownRemaining = cooldownDuration;
             if (cooldownImage != null)
                 cooldownImage.fillAmount = 0f;
+
+            SFXPlayer.instance?.PlayOneShot(AudioName.skill_rollCall);
         }
 
         private void Update()

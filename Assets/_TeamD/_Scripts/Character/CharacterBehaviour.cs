@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using WhoIsCatchingNaps;
 
 namespace Character
 {
@@ -225,6 +226,7 @@ namespace Character
                 smashAnimator.gameObject.SetActive(true);
                 smashAnimator.Play(AnimStateSmash, layer, 0f);
             }
+            SFXPlayer.instance?.PlayOneShot(AudioName.handDown);
             return;
         }
 
