@@ -202,7 +202,7 @@ MonoBehaviour:
   - {fileID: 3264439180380905265}
   - {fileID: 7273537493052633737}
   - {fileID: 5204903770551129381}
-  _particleSystem: {fileID: 6082167357082179145}
+  _particleSystem: {fileID: 8265222217786197122}
 --- !u!1001 &1533210494389165840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +214,18 @@ PrefabInstance:
     - target: {fileID: 33327074792015285, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
       propertyPath: m_Name
       value: SmashEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052129070231300592, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071701940994323552, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189587698610538298, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2192180510398864077, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
       propertyPath: m_Pivot.x
@@ -337,9 +349,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2192180510398864077, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
   m_PrefabInstance: {fileID: 1533210494389165840}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &6082167357082179145 stripped
+--- !u!198 &8265222217786197122 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4697039108070672729, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7490885870080727954, guid: d3607b4c44f38bc4aa491bd41633e5f4, type: 3}
   m_PrefabInstance: {fileID: 1533210494389165840}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &8331654344906775421 stripped
