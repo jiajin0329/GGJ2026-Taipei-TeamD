@@ -18,7 +18,11 @@ public class ClickParticle : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        _clickParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        
+        if(_clickParticle != null)
+        {
+            _clickParticle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
         
         // 初始化 camera
         if(_targetCamera == null)
