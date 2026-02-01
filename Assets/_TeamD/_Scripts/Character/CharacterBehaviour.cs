@@ -85,6 +85,7 @@ namespace Character
         _currentSwitchInterval = switchInterval;
         _currentState = GetInitialState();
         _timer = 0f;
+        SwitchToRandomCat();
         NotifyStateChange();
     }
 
