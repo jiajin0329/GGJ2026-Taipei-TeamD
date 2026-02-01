@@ -8,6 +8,7 @@ namespace WhoIsCatchingNaps
         [field: SerializeField]
         public int levelTime { get; private set; } = 120;
 
+        [field: Header("ReduceTime")]
         [field: SerializeField]
         public float reduceTime { get; private set; }
 
@@ -23,6 +24,17 @@ namespace WhoIsCatchingNaps
         [field: SerializeField]
         public float reduceTimeTextMoveY { get; private set; } = 50f;
 
+        [field: Header("Combo")]
+        [field: SerializeField]
+        public float comboDOPunchScale { get; private set; } = 1.1f;
+
+        [field: SerializeField]
+        public float comboDOPunchScaleInDuration { get; private set; } = 0.1f;
+
+        [field: SerializeField]
+        public float comboDOPunchScaleOutDuration { get; private set; } = 0.2f;
+
+        [field: Header("Audio")]
         [field: SerializeField]
         public AudioClipSetting[] audioClipSettings { get; private set; }
     }

@@ -47,7 +47,7 @@ namespace WhoIsCatchingNaps
         public void Reduce()
         {
             _timer -= _levelSettings.reduceTime;
-            _view.Reduce(_levelSettings.reduceTime).Forget();
+            _view.Play().Forget();
         }
 
         private void OnDestroy()
